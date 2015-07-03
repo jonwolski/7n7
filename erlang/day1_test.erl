@@ -15,3 +15,10 @@ words_in_string_test_() ->
 
 count_to_ten_test_() -> ?_assert(day1:count_to_ten() =:= 10).
 
+either_test_() ->
+  [?_assert(day1:either(success) =:= "success")
+  ,?_assert(day1:either({error,"Test error message"}) =:= "error: Test error message")
+  ,?_assert(day1:either({error,"Another message"}) =:= "error: Another message")
+  ,?_assertException(error, function_clause, day1:either({other_atom,"Test error message"}))
+  ,?_assertException(error, function_clause, day1:either(other_atom))
+  ].
