@@ -1,5 +1,4 @@
 -module(day1).
--include_lib("eunit/include/eunit.hrl").
 -export([words_in_string/1]).
 -export([count_to_ten/0]).
 -export([either/1]).
