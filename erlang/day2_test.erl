@@ -26,3 +26,12 @@ line_items_with_subtotals_test_() ->
       ])
     )
   ].
+
+tic_tac_toe_test_() ->
+  [?_assertEqual( no_winner, day2:score_tic_tac_toe([empty,empty,empty,empty,empty,empty,empty,empty,empty ]))
+  ,?_assertEqual( x, day2:score_tic_tac_toe([x,x,x, o,empty,o, o,empty,empty]))
+  ,?_assertEqual( o, day2:score_tic_tac_toe([x,o,x, x,o,o, empty,o,empty]))
+  ,?_assertEqual( x, day2:score_tic_tac_toe([x,o,x, o,x,o, x,o,empty]))
+  ,?_assertEqual( cat, day2:score_tic_tac_toe([o,o,x, x,x,o, o,x,o]))
+  ,?_assertEqual( no_winner, day2:score_tic_tac_toe([o,o,x, x,x,o, o,x,empty]))
+  ].
