@@ -1,8 +1,21 @@
 -module(day3_test).
 -include_lib("eunit/include/eunit.hrl").
 
-monitor_test() ->
+monitor_translator_test() ->
   Monitor = spawn( day3, monitor_service, [translate_service,loop,[]] ),
+  assert_monitor_restarts_service_instance( Monitor ).
+
+monitor_doctor_test() ->
+  Monitor = spawn( day3, monitor_service, [doctor,loop,[]] ),
+  assert_monitor_restarts_service_instance( Monitor ).
+
+monitored_pid( Monitor ) ->
+  Monitor ! { service_instance_pid, self() },
+  receive
+    Msg -> Msg
+  end.
+
+assert_monitor_restarts_service_instance( Monitor ) ->
   Monitor ! new,
   Service_instance = monitored_pid( Monitor ),
   ?assert(erlang:is_process_alive( Service_instance )),
@@ -14,11 +27,4 @@ monitor_test() ->
   io:format("Current service instance PID is ~p.~n", [Restarted_service_instance]),
   ?assert(erlang:is_process_alive( Restarted_service_instance )),
   ?assertEqual("house", translate_service:translate( Restarted_service_instance, "casa" )).
-
-monitored_pid( Monitor ) ->
-  Monitor ! { service_instance_pid, self() },
-  receive
-    Msg -> Msg
-  end.
-
 
