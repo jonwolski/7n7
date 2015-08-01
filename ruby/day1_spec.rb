@@ -2,17 +2,17 @@ require './day1'
 
 RSpec.describe "Day1" do
   describe "exercise 1" do
-    subject { exercise_1 }
+    subject { Day1::exercise_1 }
     it { should eq "Hello, world." }
   end
 
   describe "exercise 2" do
-    subject { exercise_2 }
+    subject { Day1::exercise_2 }
     it { should eq 7 }
   end
 
   describe "exercise 3" do
-    subject { exercise_3 }
+    subject { Day1::exercise_3 }
     it { should eq( <<-OUTPUT )}
 your name
 your name
@@ -28,7 +28,7 @@ your name
   end
 
   describe "exercise 4" do
-    subject { exercise_4 }
+    subject { Day1::exercise_4 }
     it { should eq( <<-OUTPUT )}
 This is sentence number 1.
 This is sentence number 2.
